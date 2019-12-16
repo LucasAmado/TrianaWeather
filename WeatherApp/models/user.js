@@ -4,15 +4,18 @@
 const mongoose = require('mongoose');
 
 const userSchema = new mongoose.Schema({
-    fullname: String,
-    creationDate: Date,
-    username: String,
-    password: String,
-    email: String,
-    roles: String,
-    registered_station: {type: mongoose.Schema.Types.ObjectId},
-    keep_station: {type: mongoose.Schema.Types.ObjectId},
-    rol: String
+    fullname: {type: String},
+    creationDate: {type: Date},
+    username: {type: String},
+    password: {type: String},
+    email: {type: String},
+    registered_station: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'}],
+    keep_station: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'}],
+    rol: {type: String, enum: ["USER", "MANAGER", "ADMIN"]}
 });
 
 
