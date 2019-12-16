@@ -4,7 +4,7 @@ const cookieParser = require('cookie-parser')
 const bodyParser = require('body-parser')
 
 const users = require('./routes/users')
-
+//prueba
 const app = express()
 
 app.use(bodyParser.json())
