@@ -14,39 +14,24 @@ function ensureAuthenticatedWithRole(role, req, res, next) {
         if (!user) { return next(new error_types.Error403("You are not allowed to access.")); }
 
         if (role != null) {
-            //if (!user.roles.contains(role)) {
-            //if (!Array.from(user.roles).contains(role)) {
-            if (! _.indexOf(user.roles, "TECNICO") > 0 ) {
-                return next(new error_types.Error403("El usuario no posee el rol necesario."));
-            }
+            if (user.rol != role) return next(new error_types.Error403("El usuario no posee el rol necesario."));
         }
 
         req.user = user;
         next();
     })(req, res, next);
-
-
 }
-
 
 let middlewares = {
     
-    ensureAuthenticated: (req,res,next)=>{
-/*         passport.authenticate('jwt', {session: false}, (err, user, info)=>{
-            if(info){ return next(new error_types.Error401(info.message)); }
-
-            if (err) { return next(err); }
-
-            if (!user) { return next(new error_types.Error403("You are not allowed to access.")); }
-            
-            req.user = user;
-            next();
-        })(req, res, next);
- */    
-        ensureAuthenticatedWithRole(null, req, res, next);
+    ensureAuthenticatedUser: (req, res, next) => {
+        ensureAuthenticatedWithRole("USER", req, res, next);
     },
-    ensureAuthenticatedTecnico: (req, res, next) => {
-        ensureAuthenticatedWithRole("TECNICO", req, res, next);
+    ensureAuthenticatedManager: (req, res, next) => {
+        ensureAuthenticatedWithRole("MANAGER", req, res, next);
+    },
+    ensureAuthenticatedAdmin: (req, res, next) => {
+        ensureAuthenticatedWithRole("ADMIN", req, res, next);
     },
     errorHandler: (error, req, res, next) => {
         if(error instanceof error_types.InfoError)
