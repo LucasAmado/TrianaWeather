@@ -11,7 +11,7 @@ const ExtractJwt = require('passport-jwt').ExtractJwt;
 const bcrypt = require('bcryptjs');
 const user_routes = require('./routes/users');
 const station_routes = require('./routes/stations');
-const weather_routes = require('./routes/stations');
+const weather_routes = require('./routes/weathers');
 const middleware = require('./middleware/index'); 
 const User = require('./models/user');
 require('./data');
@@ -22,6 +22,9 @@ const mongoose = require('mongoose');
 /*
    CONECTAR CON MONGO
 */
+
+//NO BORRAR LA SIGUIENTE LÍNEA, ES LA CONEXIÓN PARA ESPE
+//mongoose.connect(process.env.MONGODB_DOCKERTOOLBOX_ESPE, {useNewUrlParser: true});
 mongoose.connect(process.env.MONGODB_URI, {useNewUrlParser: true});
 mongoose.set('useFindAndModify', false);
 

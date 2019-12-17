@@ -14,7 +14,9 @@ function ensureAuthenticatedWithRole(role, req, res, next) {
         if (!user) { return next(new error_types.Error403("You are not allowed to access.")); }
 
         if (role != null) {
-            if (user.rol != role) return next(new error_types.Error403("El usuario no posee el rol necesario."));
+            if((role=="MANAGER"&&user.rol=='USER')||(role=="ADMIN" && (user.rol=='USER'||user.rol=='MANAGER'))){
+                return next(new error_types.Error403("El usuario no posee el rol necesario."));
+            }
         }
 
         req.user = user;
@@ -23,7 +25,9 @@ function ensureAuthenticatedWithRole(role, req, res, next) {
 }
 
 let middlewares = {
-    
+    ensureAuthenticated: (req, res, next) => {
+        ensureAuthenticatedWithRole(null, req, res, next);
+    },
     ensureAuthenticatedUser: (req, res, next) => {
         ensureAuthenticatedWithRole("USER", req, res, next);
     },

@@ -3,8 +3,8 @@
 const mongoose = require('mongoose');
 
 const stationsSchema = new mongoose.Schema({
-    latitud: {type:Number},
-    longuitud: {type:Number},
+    latitud: {type:String},
+    longuitud: {type:String},
     nombre : {type:String},
     registro: {
         type: mongoose.Schema.Types.ObjectId,
