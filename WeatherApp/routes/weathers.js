@@ -3,14 +3,14 @@
 const express = require('express')
 const router = express.Router()
 const middleware = require('../middleware/index');
-//const WeatherController = require('../controllers/station')
+const WeatherController = require('../controllers/weather')
 
 
 //router.get('/', middleware.ensureAuthenticated, WeatherController.getTodos);
 //router.get('/', WeatherController.getTodos);
 
 //router.post('/', middleware.ensureAuthenticated, WeatherController.nuevaWeather);
-//router.post('/', WeatherController.nuevaWeather);
+router.post('/', WeatherController.nuevoWeather);
 
 
 module.exports = router
