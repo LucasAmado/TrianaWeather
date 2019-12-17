@@ -3,6 +3,16 @@
 const mongoose = require('mongoose');
 
 const weatherSchema = new mongoose.Schema({
+    statiom : {
+    latitud: {type:Number},
+    longuitud: {type:Number},
+    nombre : {type:String},
+    registro: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'},
+    mantenimiento: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'}},
     lluvia: {type:Number},
     velocidad: {type:Number},
     direccion_viento: {type:Number},

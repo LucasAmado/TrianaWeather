@@ -5,7 +5,7 @@ const error_types       = require('../controllers/error_types');
 const _                 = require('lodash');
 
 
-function ensureAuthenticatedWithRole(role, req, res, next) {
+function ensureAuthenticatedWithRole(rol, req, res, next) {
     passport.authenticate('jwt', {session: false}, (err, user, info)=>{
         if(info){ return next(new error_types.Error401(info.message)); }
 
@@ -13,10 +13,10 @@ function ensureAuthenticatedWithRole(role, req, res, next) {
 
         if (!user) { return next(new error_types.Error403("You are not allowed to access.")); }
 
-        if (role != null) {
+        if (rol != null) {
             //if (!user.roles.contains(role)) {
             //if (!Array.from(user.roles).contains(role)) {
-            if (! _.indexOf(user.roles, "TECNICO") > 0 ) {
+            if (! _.indexOf(user.roles, rol) > 0 ) {
                 return next(new error_types.Error403("El usuario no posee el rol necesario."));
             }
         }
