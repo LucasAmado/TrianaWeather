@@ -7,7 +7,7 @@ const WeatherController = require('../controllers/weather')
 
 
 //router.get('/', middleware.ensureAuthenticated, WeatherController.getTodos);
-//router.get('/', WeatherController.getTodos);
+router.get('/:id', WeatherController.getUno);
 
 //router.post('/', middleware.ensureAuthenticated, WeatherController.nuevaWeather);
 router.post('/', WeatherController.nuevoWeather);
