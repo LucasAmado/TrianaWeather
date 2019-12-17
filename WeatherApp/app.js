@@ -14,6 +14,7 @@ const station_routes = require('./routes/stations');
 const weather_routes = require('./routes/stations');
 const middleware = require('./middleware/index'); 
 const User = require('./models/user');
+require('./data');
 require('dotenv').config();
 
 const mongoose = require('mongoose');
@@ -29,8 +30,6 @@ db.on('error', console.error.bind(console, 'connection error: '));
 db.once('open', () => {
     console.log('Conectado!');
 });
-
-
 
 passport.use(new LocalStrategy((username, password, done) => {
     let busqueda = (username.includes('@')) ? { email: username } : { username: username };
