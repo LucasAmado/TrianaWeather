@@ -66,7 +66,8 @@ const weather1 = new Weather({
     temp_ambiente: 2,
     temp_suelo: -2,
     calidad_aire: 70,
-    presion: 30
+    presion: 30,
+    fecha: new Date(Date.now())
 });
 
 const weather2 = new Weather({
@@ -82,5 +83,21 @@ const weather2 = new Weather({
 });
 
 weather1.save();
+weather2.save();
+
+const Weather = require('./models/weather');
+const mongoose = require('mongoose');
+
+const weather2 = new Weather({
+    station: mongoose.Types.ObjectId("5df921c9560012322c99a540"),
+    lluvia: 50,
+    velocidad: 35,
+    direccion_viento: 30,
+    temp_ambiente: 2,
+    temp_suelo: -2,
+    calidad_aire: 70,
+    presion: 30,
+    fecha: new Date(2019,12,18)
+});
 weather2.save();
 */

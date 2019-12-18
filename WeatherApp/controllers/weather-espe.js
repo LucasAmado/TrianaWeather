@@ -1,18 +1,18 @@
 const Weather = require("../models/weather");
 const error_types = require("../controllers/error_types");
-const Station = require("../models/station");
 
 let controller = {
-  getWeatherToday: async (req, res, next) => {
+  getWeather: (req, res, next) => {
+    //Método realizado por Esperanza Escacena. He parametrizado la consulta para reutilizar el método para dos rutas
     let hoy = new Date(Date.now());
     let ayer = new Date(hoy);
-    ayer.setDate(hoy.getDate() - 1);
-    ayer.setHours(0, 0, 0, 0);
+    ayer.setUTCHours(0, 0, 0, 0);
     let manana = new Date(hoy);
     manana.setDate(hoy.getDate() + 1);
-    manana.setHours(0, 0, 0, 0);
-
-    Weather.find({ fecha: { $gte: ayer, $lte: manana } })
+    manana.setUTCHours(0, 0, 0, 0);
+    
+    let busqueda = (req.params.from==undefined && req.params.to==undefined) ? { fecha: { $gte: ayer, $lt: manana } } : { fecha: { $gte: req.params.from, $lte: req.params.to }};
+    Weather.find(busqueda)
       .populate({
         path: "station",
         model: "Station",
@@ -27,14 +27,8 @@ let controller = {
 
         res.status(200).json(resp);
       });
-  },
-
-  getByStation: (req, res, next) => {
-    Weather.find({ "station.id": req.body.id_station }, (err, resp) => {
-      if (err) return next(new error_types.Error404(err.message));
-      res.status(200).json(resp);
-    });
   }
+ 
 };
 
 module.exports = controller;

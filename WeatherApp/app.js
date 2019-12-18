@@ -24,8 +24,8 @@ const mongoose = require('mongoose');
 */
 
 //NO BORRAR LA SIGUIENTE LÍNEA, ES LA CONEXIÓN PARA ESPE
-//mongoose.connect(process.env.MONGODB_DOCKERTOOLBOX_ESPE, {useNewUrlParser: true});
-mongoose.connect(process.env.MONGODB_URI, {useNewUrlParser: true});
+mongoose.connect(process.env.MONGODB_DOCKERTOOLBOX_ESPE, {useNewUrlParser: true});
+//mongoose.connect(process.env.MONGODB_URI, {useNewUrlParser: true});
 mongoose.set('useFindAndModify', false);
 
 let db = mongoose.connection;
