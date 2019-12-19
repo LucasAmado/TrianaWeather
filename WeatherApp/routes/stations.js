@@ -15,5 +15,10 @@ router.get(
   middleware.ensureAuthenticated,
   controller.getWeatherByStationId
 );
+router.put(
+  "/:id",
+  middleware.ensureAuthenticatedManager,
+  controller.putStation
+);
 
 module.exports = router;

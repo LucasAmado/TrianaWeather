@@ -17,15 +17,31 @@ module.exports = {
             presion: req.body.presion
         });
         weather.save()
-            .then(t => t.populate('station').execPopulate())
+            .then(t => t.populate({
+                path: "station",
+                model: "Station",
+                populate: {
+                  path: "registro mantenimiento",
+                  model: "User",
+                  select: "fullname email"
+                }
+              }).execPopulate())
             .then(t => res.status(201).json(t))
             .catch(err => res.send(500).json(err.message));
     },
 
     getUno : (req,res,next) => {
 
-        let weatherId = req.params.id;
-        Weather.findById(weatherId).exec((err, weather) => {
+        Weather.findById(req.params.id)
+        .populate({
+            path: "station",
+            model: "Station",
+            populate: {
+              path: "registro mantenimiento",
+              model: "User",
+              select: "fullname email"
+            }
+          }).exec((err, weather) => {
             if (err) return next(new error_types.Error404(err.message));
             res.status(200).json(weather);
              
