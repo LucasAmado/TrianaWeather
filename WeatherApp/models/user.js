@@ -15,7 +15,7 @@ const userSchema = new mongoose.Schema({
     keep_station: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Station'}],
-    rol: {type: String, enum: ["USER", "MANAGER", "ADMIN"]}
+    rol: {type: String, enum: ["USER", "MANAGER", "ADMIN"], default: "USER"}
 });
 
 
