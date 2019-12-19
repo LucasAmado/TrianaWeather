@@ -12,6 +12,7 @@ const weatherSchema = new mongoose.Schema({
   direccion_viento: { type: Number },
   temp_ambiente: { type: Number },
   temp_suelo: { type: Number },
+  humedad :  { type: Number },
   calidad_aire: { type: Number },
   presion: { type: Number },
   fecha: { type: Date, default: Date.now()  }

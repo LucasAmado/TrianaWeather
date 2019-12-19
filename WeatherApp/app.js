@@ -14,7 +14,7 @@ const station_routes = require('./routes/stations');
 const weather_routes = require('./routes/weathers');
 const middleware = require('./middleware/index'); 
 const User = require('./models/user');
-require('./data');
+//require('./data');
 require('dotenv').config();
 
 const mongoose = require('mongoose');

@@ -65,6 +65,7 @@ const weather1 = new Weather({
     direccion_viento: 30,
     temp_ambiente: 2,
     temp_suelo: -2,
+    humedad : 2,
     calidad_aire: 70,
     presion: 30,
     fecha: new Date(Date.now())
@@ -77,6 +78,7 @@ const weather2 = new Weather({
     direccion_viento: 30,
     temp_ambiente: 2,
     temp_suelo: -2,
+    humedad : 3,
     calidad_aire: 70,
     presion: 30,
     fecha: new Date(2019,12,12)

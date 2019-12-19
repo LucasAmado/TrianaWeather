@@ -21,4 +21,10 @@ router.put(
   controller.putStation
 );
 
+router.get(
+  "/:id/summary/today",
+  middleware.ensureAuthenticated,
+  controller.getSummaryToday
+);
+
 module.exports = router;
