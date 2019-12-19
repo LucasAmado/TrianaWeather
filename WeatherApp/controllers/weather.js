@@ -13,6 +13,7 @@ module.exports = {
             direccion_viento: req.body.direccion_viento,
             temp_ambiente: req.body.temp_ambiente,
             temp_suelo: req.body.temp_suelo,
+            humedad : req.body.humedad,
             calidad_aire: req.body.calidad_aire,
             presion: req.body.presion
         });
