@@ -1,6 +1,7 @@
 //Controladores de station
 const Station = require("../models/station");
 const Weather = require("../models/weather");
+const User = require("../models/user");
 
 let controller = {
   getWeatherByStationId: (req, res, next) => {
@@ -65,7 +66,8 @@ let controller = {
         }).exec((err,resp) => {
           if (err) return next(new error_types.Error404(err.message));
           res.status(200).json(resp);
-           
+          
+        
       });
      
   },
@@ -122,10 +124,7 @@ let controller = {
           calidad_aire : (resp.map(function(x){return x.calidad_aire}).reduce(( suma , calidad_aire ) => suma + calidad_aire, 0 )/resp.length).toFixed(2)
         
         };
-        
-        
-        
-
+  
         res.status(200).json({
           station: stationDto,
           datos_meteorologicos :  listaDatos
