@@ -11,10 +11,8 @@
       "controllers",
       "middleware",
       "models",
-      "routes"
+      "routes",
+      "app.js"
     ],
-    "ext": "js",
-    "execMap":{ 
-        "js":"node --require babel-register"
-    }
+    "ext": "js"
   }

@@ -43,6 +43,10 @@ const station1 = new Station({
     registro: usuario._id,
     mantenimiento: usuario2._id
 });
+usuario.registered_station.push(station1._id);
+usuario.update();
+usuario2.registered_station.push(station2._id);
+usuario2.update();
 
 const station2 = new Station({
     latitud: '3.59896',
@@ -67,8 +71,7 @@ const weather1 = new Weather({
     temp_suelo: -2,
     humedad : 2,
     calidad_aire: 70,
-    presion: 30,
-    fecha: new Date(Date.now())
+    presion: 30
 });
 
 const weather2 = new Weather({

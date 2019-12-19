@@ -1,13 +1,32 @@
 //Controladores de station
 const Station = require("../models/station");
 const Weather = require("../models/weather");
-const User = require("../models/user");
+const error_types = require("../controllers/error_types");
 
 let controller = {
   getWeatherByStationId: (req, res, next) => {
+    if(req.params.from==undefined && req.params.to==undefined){
+      busqueda={"station": req.params.id};
+
+    }else{
+      let from= new Date();
+      let fecha=req.params.from.split('-');
+      from= from.setFullYear(fecha[2],fecha[1]-1,fecha[0]);
+      from=new Date(from);
+      from.setUTCHours(0, 0, 0, 0);
+
+      let to = new Date();
+      fecha=req.params.to.split('-');
+      to = to.setFullYear(fecha[2],fecha[1]-1,fecha[0]);
+      to= new Date(to);
+      to.setDate(to.getDate() + 1);
+      to.setUTCHours(0, 0, 0, 0);
+     
+      busqueda={"station": req.params.id ,fecha: { $gte: from, $lte: to }};
+    }
     //Método realizado por Esperanza Escacena. He parametrizado la consulta para reutilizar el método para dos rutas
     //que son /stations/id/weather y /stations/id/weather/from/to, ya que necesitaba el mismo código con diferente consulta.
-    let busqueda = (req.params.from==undefined && req.params.to==undefined) ? {"station": req.params.id}:{"station": req.params.id ,fecha: { $gte: req.params.from, $lte: req.params.to }};
+    
 
     Weather.find(busqueda)
       .populate({
