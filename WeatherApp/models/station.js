@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 
 const stationsSchema = new mongoose.Schema({
     latitud: {type:String},
-    longuitud: {type:String},
+    longitud: {type:String},
     nombre : {type:String},
     registro: {
         type: mongoose.Schema.Types.ObjectId,
