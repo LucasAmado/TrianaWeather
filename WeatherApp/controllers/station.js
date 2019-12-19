@@ -52,6 +52,21 @@ let controller = {
           weather: weatherList
         });
       });
+  },
+    putStation: (req, res,next) => {
+      
+      Station.findByIdAndUpdate((req.params.id),req.body,{new:true})
+      .populate({
+            path: "registro mantenimiento",
+            model: "User",
+            select: "fullname email"
+          
+        }).exec((err,resp) => {
+          if (err) return next(new error_types.Error404(err.message));
+          res.status(200).json(resp);
+           
+      });
+     
   }
 };
 
