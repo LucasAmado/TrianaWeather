@@ -1,0 +1,21 @@
+{
+    "restartable": "rs",
+    "verbose": true,
+    "ignore": [
+      "node_modules"
+    ],
+    "execMap": {
+      "js": "node --require 'babel-register'"
+    },
+    "watch": [
+      "controllers",
+      "middleware",
+      "models",
+      "routes",
+      "data.js"
+    ],
+    "ext": "js",
+    "execMap":{ 
+        "js":"node --require babel-register"
+    }
+  }
