@@ -1,7 +1,7 @@
 // ESTE ARCHIVO CONTIENE DATOS MOCK
 
 //ES NECESARIO EJECUTARLO UNA SOLA VEZ.
-/*
+
 
 //DATOS USER
 const bcrypt = require('bcryptjs');
@@ -87,4 +87,3 @@ const weather2 = new Weather({
 weather1.save();
 weather2.save();
 
-*/
