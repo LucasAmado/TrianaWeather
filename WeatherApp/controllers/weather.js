@@ -1,12 +1,13 @@
 const Weather = require('../models/weather');
 const _ = require('lodash');
+const error_types = require('./error_types');
 
 module.exports = {
 
     nuevoWeather: (req, res) => {
     
         let weather = new Weather({
-            station: req.station._id,
+            station: req.body.station,
             lluvia: req.body.lluvia,
             velocidad: req.body.velocidad,
             direccion_viento: req.body.direccion_viento,
@@ -21,22 +22,12 @@ module.exports = {
             .catch(err => res.send(500).json(err.message));
     },
 
-    getUno : (req,res) => {
+    getUno : (req,res,next) => {
 
-        //let weatherId = req.params.id;
-        console.log(req.body)
-        Weather.findById(req.body.id_).exec((err, weather) => {
-            if(err) return res.status(500).send({ message: 'Error en el servidor' });
-                          
-                if(weather){
-                    return res.status(200).send({
-                        weather
-                    });
-                }else{
-                    return res.status(404).send({
-                        message: 'Weather no existe'
-                    });
-                }
+        let weatherId = req.params.id;
+        Weather.findById(weatherId).exec((err, weather) => {
+            if (err) return next(new error_types.Error404(err.message));
+            res.status(200).json(weather);
              
         });
     }
