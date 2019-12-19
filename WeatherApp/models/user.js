@@ -11,10 +11,10 @@ const userSchema = new mongoose.Schema({
     email: {type: String},
     registered_station: [{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'User'}],
+        ref: 'Station'}],
     keep_station: [{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'User'}],
+        ref: 'Station'}],
     rol: {type: String, enum: ["USER", "MANAGER", "ADMIN"]}
 });
 
