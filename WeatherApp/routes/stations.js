@@ -27,4 +27,16 @@ router.get(
   controller.getSummaryToday
 );
 
+
+router.get("/",
+middleware.ensureAuthenticatedManager,
+controller.getStations);
+
+router.post("/",
+middleware.ensureAuthenticatedManager,
+controller.newStation);
+
+router.delete('/:id',
+middleware.ensureAuthenticatedManager,
+controller.deleteStation);
 module.exports = router;
