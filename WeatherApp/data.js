@@ -67,8 +67,7 @@ const weather1 = new Weather({
     temp_suelo: -2,
     humedad : 2,
     calidad_aire: 70,
-    presion: 30,
-    fecha: Date.now()
+    presion: 30
 });
 
 const weather2 = new Weather({
