@@ -16,6 +16,10 @@ let controller = {
     }); 
   },
   getWeatherByStationId: (req, res, next) => {
+     //Método realizado por Esperanza Escacena. He parametrizado la consulta para reutilizar el método para dos rutas
+    //que son /stations/id/weather y /stations/id/weather/from/to, ya que necesitaba el mismo código con diferente consulta.
+
+    let busqueda;
     if(req.params.from==undefined && req.params.to==undefined){
       busqueda={"station": req.params.id};
 
@@ -36,10 +40,7 @@ let controller = {
       busqueda={"station": req.params.id ,fecha: { $gte: from, $lte: to }};
     }
 
-    //Método realizado por Esperanza Escacena. He parametrizado la consulta para reutilizar el método para dos rutas
-    //que son /stations/id/weather y /stations/id/weather/from/to, ya que necesitaba el mismo código con diferente consulta.
-    let busqueda = (req.params.from==undefined && req.params.to==undefined) ? {"station": req.params.id}:{"station": req.params.id ,fecha: { $gte: req.params.from, $lte: req.params.to }};
-
+   
     Weather.find(busqueda)
       .populate({
         path: "station",
